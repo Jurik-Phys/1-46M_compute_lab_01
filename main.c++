@@ -1,7 +1,6 @@
 // Начало файла main.c++
 
 #include <cstdlib>
-// #include "doctest.h"
 #include "gsl_func.h"
 #include "lab_01.h"
 

@@ -1,6 +1,5 @@
 // Начало файла lab_01.с++
 
-// #include "doctest.h"
 #include "lab_01.h"
 
 // https://stackoverflow.com/a/25762852

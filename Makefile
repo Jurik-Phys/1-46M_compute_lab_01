@@ -1,7 +1,7 @@
 EXEC=lab_01
 EXEC_T=t_$(EXEC)
-OBJ=lab_01.o main.o gsl_func.o
-OBJ_T=lab_01.o test.o gsl_func.o 
+OBJ=main.o gsl_func.o fparser.o lab_01.o
+OBJ_T=gsl_func.o fparser.o lab_01.o test.o 
 LIBS  = -lgsl  
 
 main: $(OBJ)
@@ -13,6 +13,9 @@ lab_01.o: lab_01.c++ lab_01.h
 gsl_func.o: gsl_func.c++ gsl_func.h
 	@echo "Компиляция модуля gsl_func"
 	c++ -Wall -c gsl_func.c++
+fparser.o: fparser.c++
+	@echo "Компиляция модуля fparser"
+	c++ -Wall -c fparser.c++
 main.o: main.c++
 	@echo "Компиляция main.o"
 	c++ -Wall -c main.c++

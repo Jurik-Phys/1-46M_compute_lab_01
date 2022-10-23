@@ -39,9 +39,14 @@ class GSLComputeIntegrall : public ComputeTraining {
 };
 
 class Integrands{
+    private:
+        static std::string manual_integrands;
     public:
-    static double v2_1(double p_x);
-    static double v2_2(double p_x);
-    static double v3_1(double p_x);
+        Integrands();
+        static double v2_1(double p_x);
+        static double v2_2(double p_x);
+        static double v3_1(double p_x);
+        static double manual(double p_x);
+        static   void set_manual(std::string);
 };
 #endif

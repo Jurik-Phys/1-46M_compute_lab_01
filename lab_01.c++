@@ -1,10 +1,17 @@
 // Начало файла lab_01.с++
 
 #include "lab_01.h"
+#include "fparser.h"
 
 // https://stackoverflow.com/a/25762852
-ComputeTraining::ComputeTraining() { cout << "ComputeTraining Constructor" << "\n"; }
-ComputeTraining::~ComputeTraining() { cout << "[~] ComputeTraining Destructor" << "\n"; }
+ComputeTraining::ComputeTraining() { 
+    // Debug
+    //cout << "ComputeTraining Constructor" << "\n";
+}
+ComputeTraining::~ComputeTraining() { 
+    // Debug
+    // cout << "[~] ComputeTraining Destructor" << "\n";
+}
 
 // https://www.experts-exchange.com/articles/3843/How-to-add-properties-to-standard-C-classes.html 
 void ComputeTraining::set_lo_lim(const int& p_a){ lim_a = p_a; };
@@ -14,14 +21,16 @@ void ComputeTraining::set_n(const int& p_n){ n = p_n; };
 // ==>> MANUAL COMPUTE INTEGRALL << == //
 
 ManualComputeIntegrall::ManualComputeIntegrall(){
-    cout << "ManualComputeIntegrall Constructor" << "\n";
+    // Debug 
+    // cout << "ManualComputeIntegrall Constructor" << "\n";
     set_lo_lim(0);
     set_hi_lim(1);
     set_n(100);
 }
 
 ManualComputeIntegrall::~ManualComputeIntegrall() {
-    cout << "[~] ManualComputeIntegrall Destructor" << "\n";
+    // Debug
+    // cout << "[~] ManualComputeIntegrall Destructor" << "\n";
 }
 
 double ManualComputeIntegrall::calculation(double f(double), const double& p_a, const double& p_b, const int& p_n){
@@ -47,14 +56,16 @@ double ManualComputeIntegrall::calculation(double f(double)){
 // ==>> GSL COMPUTE INTEGRALL << == //
 
 GSLComputeIntegrall::GSLComputeIntegrall(){
-    cout << "GSLComputeIntegrall Constructor" << "\n";
+    // Debug
+    // cout << "GSLComputeIntegrall Constructor" << "\n";
     set_lo_lim(0);
     set_hi_lim(1);
     set_n(100);
 }
 
 GSLComputeIntegrall::~GSLComputeIntegrall() {
-    cout << "[~] GSLComputeIntegrall Destructor" << "\n";
+    // Debug
+    // cout << "[~] GSLComputeIntegrall Destructor" << "\n";
 }
 
 double GSLComputeIntegrall::calculation(gsl_function_type* f){
@@ -81,6 +92,9 @@ double GSLComputeIntegrall::calculation(gsl_function_type* f){
 
 // ==>> SET OF INTEGRANDS << == //
 
+Integrands::Integrands(){
+}
+
 
 double Integrands::v2_1(double p_x){
     return (p_x + pow(p_x, 2) - pow(p_x, 3) - 1) / (1.0 + pow(p_x, 2));
@@ -93,3 +107,15 @@ double Integrands::v2_2(double p_x){
 double Integrands::v3_1(double p_x){
         return 1.0 / ( 1.0 + sqrt(2*p_x + 1.0 ));
 }
+
+void Integrands::set_manual(std::string s){
+    manual_integrands = s; 
+}
+
+double Integrands::manual(double p_x){
+    FParser fparser(p_x);
+    return fparser.parse(manual_integrands);
+}
+
+// Initialize static variable
+std::string Integrands::manual_integrands = "initialize string text";
